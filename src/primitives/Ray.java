@@ -27,6 +27,22 @@ public class Ray {
         dir = v1.normalize();
     }
 
+    /**
+     * get the starting point of the ray
+     * @return starting point of the ray (p0)
+     */
+    public Point getP0() {
+        return p0;
+    }
+
+    /**
+     * get the direction of the ray
+     * @return the direction of the ray
+     */
+    public Vector getDir() {
+        return dir;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

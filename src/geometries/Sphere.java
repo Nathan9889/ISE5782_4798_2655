@@ -27,9 +27,17 @@ public class Sphere implements Geometry{
         this.radius = radius;
     }
 
-
+    /**
+     * the normal of sphere:
+     * n = normalize(p - centerPoint)
+     * @param p the point on the sphere we want the normal from
+     * @return normal vector
+     */
     @Override
     public Vector getNormal(Point p) {
-        return null;
+
+        Vector vec = p.subtract(p0);
+        return vec.normalize();
+
     }
 }

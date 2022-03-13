@@ -13,8 +13,6 @@ public interface Geometry {
      * @param p1
      * @return
      */
-
-
     public Vector getNormal(Point p1);
 
 }

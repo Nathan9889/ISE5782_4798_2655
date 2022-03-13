@@ -31,6 +31,18 @@ public class Tube implements Geometry {
 
     @Override
     public Vector getNormal(Point p) {
-        return null;
+        Vector pp0 = p.subtract(my_ray.getP0());
+        double tube = my_ray.getDir().dotProduct(pp0);
+        Point o = my_ray.getP0().add(my_ray.getDir().scale(tube));
+
+        try{
+            pp0.crossProduct(my_ray.getDir());
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("point cannot be equal to 0");
+        }
+        Vector v1 = p.subtract(o);
+        return v1.normalize();
     }
 }

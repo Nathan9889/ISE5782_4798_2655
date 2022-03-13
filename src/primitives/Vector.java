@@ -9,29 +9,32 @@ public class Vector extends Point {
 
     /**
      * Constructor of Vector from 3 numbers
+     *
      * @param x double
      * @param y double
      * @param z double
      */
     public Vector(double x, double y, double z) {
-        super(x,y,z);
-        if(xyz.equals(Double3.ZERO))
+        super(x, y, z);
+        if (xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("Vector 0");
     }
 
     /**
      * Constructor of Vector from a double3 class
+     *
      * @param xyz Double3
      */
     public Vector(Double3 xyz) {
         super(xyz);
-        if(this.xyz.equals(Double3.ZERO))
+        if (this.xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("Vector 0");
 
     }
 
     /**
-     *get a vector and do an vectorial adddition between them
+     * get a vector and do an vectorial adddition between them
+     *
      * @param other Vector added
      * @return new vector after vectorial add
      */
@@ -42,16 +45,19 @@ public class Vector extends Point {
 
     /**
      * function that procure dot product function with another Vector
+     *
      * @param v1 Vector applying dot product to
      * @return Value of the dot product result
      */
     public double dotProduct(Vector v1) {
-        Double3 temp = this.xyz.product(v1.xyz);
-        return temp.d1 + temp.d2 + temp.d3;
+        return xyz.d1 * v1.xyz.d1 +
+                xyz.d2*v1.xyz.d2 +
+                xyz.d3 * v1.xyz.d3;
     }
 
     /**
      * function that procure cross product function with another Vector
+     *
      * @param v1 Vector applying cross product to
      * @return new Vector cross producted
      */
@@ -65,23 +71,31 @@ public class Vector extends Point {
 
     /**
      * function that get scalar number and multiply each axis of vector by that scalar
+     *
      * @param rhs scalar
-     * @return  vector multiplied by this scalar
+     * @return vector multiplied by this scalar
      */
-    public Vector scale(double rhs){
-        return  new Vector(xyz.scale(rhs));
+    public Vector scale(double rhs) {
+        return new Vector(xyz.scale(rhs));
     }
 
     /**
      * the squared length of the vector
+     *
      * @return x*x +y*y + z*z
      */
     public double lengthSquared() {
-        return dotProduct(this);
+        double u1 = xyz.d1;
+        double u2 = xyz.d2;
+        double u3 = xyz.d3;
+
+        return u1 * u1 + u2 * u2 + u3 * u3;
+
     }
 
     /**
      * the length of the vector (x, y, z)
+     *
      * @return sqrt of lenghsquared
      */
     public double length() {
@@ -90,6 +104,7 @@ public class Vector extends Point {
 
     /**
      * func that return the normal of this vector of (x, y, z)
+     *
      * @return (x, y, z) / |(x, y, z)| = (x, y, z) / sqrt(x*x + y*y + z*z)
      */
     public Vector normalize() {
@@ -104,6 +119,7 @@ public class Vector extends Point {
         Point point = (Point) o;
         return Objects.equals(xyz, point.xyz);
     }
+
     @Override
     public String toString() {
         return "Vector{" +
