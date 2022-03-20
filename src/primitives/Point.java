@@ -92,4 +92,19 @@ public class Point {
                 "xyz=" + xyz +
                 '}';
     }
+
+    /**
+     * getters to get coordinate of X, Y , Z
+     * @return coordinate of X, Y , Z
+     */
+    public double getX() {
+        return xyz.d1;
+    }
+    public double getY() {
+        return xyz.d2;
+    }
+    public double getZ() {
+        return xyz.d3;
+    }
+
 }

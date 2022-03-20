@@ -56,7 +56,6 @@ public class Plane implements Geometry {
         return normal;
     }
 
-
     /**
      * ovveriding getnormal of geometry
      * @param p point
