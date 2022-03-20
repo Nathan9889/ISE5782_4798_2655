@@ -121,7 +121,7 @@ class PlaneTest {
                 new Point(0, 0, 1),
                 new Point(0, 2, 0),
                 new Point(1, 0, 0));
-        Ray ray = new Ray( new Vector(-0.64,-0.2,0.74),new Point(5, 0, 0));
+        Ray ray = new Ray( new Vector(-0.64,-0.2,0.74),new Point(5, 0, 0) );
         assertNull(plane.findIntersections(ray));
     }
 }
