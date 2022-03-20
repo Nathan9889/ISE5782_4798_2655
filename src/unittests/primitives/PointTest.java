@@ -37,4 +37,7 @@ class PointTest {
         assertEquals(distance,p1.distance(new Point(2,4,6)),0.00001,
                 "ERROR: Wrong distance squared calculus");
     }
+
+
+
 }

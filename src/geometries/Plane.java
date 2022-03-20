@@ -1,11 +1,17 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 public class Plane implements Geometry {
 
-    final Point p;
+    final Point q0;
     final Vector normal;
 
 
@@ -29,7 +35,7 @@ public class Plane implements Geometry {
 
             normal = N.normalize();
 
-            p = p1;
+            q0 = p1;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("can not create a plane with all 3 point on the same line");
         }
@@ -41,7 +47,7 @@ public class Plane implements Geometry {
      * @param p1
      */
     public Plane(Vector v1,Point p1){
-        p = p1;
+        q0 = p1;
         normal  = v1.normalize();
     }
 
@@ -61,5 +67,34 @@ public class Plane implements Geometry {
         return normal;
     }
 
+    /**
+     *
+     * @param ray {@link Ray} point to object
+     * @return list of point that intersect the object
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
 
+        Point p0 = ray.getP0();
+        Vector v1 = ray.getDir();
+        Vector n = normal;
+
+        if(q0.equals(p0)){
+            return  null;
+        }
+
+        double nv = n.dotProduct(v1);
+        if(isZero(nv)){
+            return null;
+        }
+
+        Vector Q0P0 = q0.subtract(p0);
+        double nQMinusP0 = alignZero(n.dotProduct(Q0P0));
+        double t = alignZero(nQMinusP0 / nv);
+        if(t <= 0)
+            return null;
+
+        return List.of(ray.getPoint(t));
+
+    }
 }

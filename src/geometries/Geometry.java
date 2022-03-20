@@ -6,7 +6,7 @@ import primitives.Vector;
 /**
  * Interface that contains abstract functions of diffeent classes
  */
-public interface Geometry {
+public interface Geometry extends Intersectable{
 
     /**
      * get Noraml function

@@ -1,6 +1,9 @@
 package primitives;
 
+import java.nio.channels.FileLockInterruptionException;
 import java.util.Objects;
+
+import static primitives.Util.isZero;
 
 /**
  * Ray class in 3D world
@@ -33,6 +36,19 @@ public class Ray {
      */
     public Point getP0() {
         return p0;
+    }
+
+
+    /**
+     * get point with specific distance
+     * @param t distance to reach new point
+     * @return new {@link Point}
+     */
+    public Point getPoint(double t){
+        if(isZero(t)){
+            throw new IllegalArgumentException("t = 0");
+        }
+        return p0.add(dir.scale(t));
     }
 
     /**
