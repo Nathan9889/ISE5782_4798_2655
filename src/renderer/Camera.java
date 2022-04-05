@@ -2,6 +2,7 @@ package renderer;
 
 import primitives.*;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 public class Camera {
@@ -31,7 +32,7 @@ public class Camera {
         return _vRight;
     }
 
-    public Camera(Point p0, Vector vUp, Vector vTo) {
+    public Camera(Point p0, Vector vTo, Vector vUp) {
         if(!isZero(vUp.dotProduct(vTo))){
             throw new IllegalArgumentException("The vectors are not orthogonal !");
         }
@@ -50,7 +51,6 @@ public class Camera {
         _width = width;
         _height = height;
         return this;
-
     }
 
 
@@ -63,15 +63,29 @@ public class Camera {
     }
 
     public Ray constructRay(int nX, int nY, int j, int i){
-        return null;
+       Point Pc = _p0.add(_vTo.scale(_distance));
+       double Rx = alignZero(_width/nX);
+       double Ry = alignZero(_height/nY);
+
+       // Xj = (j - (Nx - 1)/2) * Rx
+       double Xj = alignZero((j-((nX - 1d) / 2d)) * Rx);
+       //Yi = -(i - (Ny - 1) / 2) *Ry
+        double Yi = alignZero(- (i-((nY - 1d) / 2d)) * Ry);
+
+        Point Pij =  Pc;
+
+        if(! isZero(Xj)){
+            Pij = Pij.add(_vRight.scale(Xj));
+        }
+        if(! isZero(Yi)){
+            Pij = Pij.add(_vUp.scale(Yi));
+        }
+        if(Pij.equals(_p0)){
+            throw new IllegalArgumentException("Pij = _p0");
+        }
+
+        return new Ray( Pij.subtract(_p0).normalize(), _p0);
     }
-
-
-
-
-
-
-
 
 
 }
