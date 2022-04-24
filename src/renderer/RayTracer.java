@@ -12,5 +12,4 @@ public abstract class RayTracer {
 
     abstract Color traceRay(Ray ray);
 
-
 }
