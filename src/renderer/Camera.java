@@ -14,6 +14,8 @@ public class Camera {
     private double _distance;
     private double _width;
     private double _height;
+    private ImageWriter _imageWriter;
+    private RayTracer _rayTracer;
 
 
     public Point getP0() {
@@ -88,5 +90,39 @@ public class Camera {
     }
 
 
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        _imageWriter = imageWriter;
+        return this;
+    }
+
+    public void writeToImage() {
+        _imageWriter.writeToImage();
+    }
+
+    public void printGrid(int gap, Color intervalColor) {
+        for (int i = 0; i < _imageWriter.getNx(); i++) {
+            for (int j = 0; j < _imageWriter.getNy(); j++) {
+                // 800/16 = 50
+                if (i % gap == 0) {
+                    _imageWriter.writePixel(i, j,intervalColor);
+                }
+                // 500/10 = 50
+                else if (j % gap == 0) {
+                    _imageWriter.writePixel(i, j, intervalColor);
+                }
+            }
+        }
+    }
+
+    public Camera setRayTracer(RayTracer rayTracer) {
+        _rayTracer = rayTracer;
+        return this;
+    }
+
+
+    public void renderImage() {
+
+
+    }
 }
 

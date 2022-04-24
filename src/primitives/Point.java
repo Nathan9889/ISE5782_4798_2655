@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 public class Point {
 
+    public static Point ZERO = new Point(0,0,0);
     /**
      * Point in 3D
      */

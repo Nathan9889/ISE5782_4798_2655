@@ -1,6 +1,7 @@
 package primitives;
 
 import java.nio.channels.FileLockInterruptionException;
+import java.util.List;
 import java.util.Objects;
 
 import static primitives.Util.isZero;
@@ -75,4 +76,30 @@ public class Ray {
                 ", dir=" + dir +
                 '}';
     }
+
+    /**
+     * Find the closest point inrterseted by the ray
+     * @param points inter points
+     * @return point
+     */
+    public Point findClosestPoint(List<Point> points){
+        if(points == null){
+            return null;
+        }
+
+        Point res = points.get(0);
+        double distance = p0.distance(res);
+        double d;
+        for (var pt: points){
+            d = pt.distance(p0);
+            if(d < distance){
+                distance = d;
+                res  = pt;
+            }
+        }
+        return res;
+
+    }
+
+
 }
