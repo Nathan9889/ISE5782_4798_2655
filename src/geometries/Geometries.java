@@ -10,7 +10,7 @@ import java.util.List;
  * Class that represent different form of geometry using the interface implemented
  * @autor Nathan sayag
  */
-public class Geometries implements Intersectable{
+public class Geometries extends Intersectable {
 
     /**
      * List of geometries
@@ -48,10 +48,10 @@ public class Geometries implements Intersectable{
 
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result= null ;
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> result= null ;
         for (Intersectable geo : _intersectables) {
-            List<Point> points=geo.findIntersections(ray);
+            var points=geo.findGeoIntersectionsHelper(ray);
             if (points!=null){
                 if (result==null){
                     result=new LinkedList();

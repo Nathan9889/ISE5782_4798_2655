@@ -9,7 +9,6 @@ package primitives;
  * @author Dan Zilberstein
  */
 public class Color {
-
 	/**
 	 * The internal fields tx`o maintain RGB components as double numbers from 0 to
 	 * whatever...
@@ -17,14 +16,15 @@ public class Color {
 	private final Double3 rgb;
 
 	/**
-	 * Blue color
-	 */
-	public static final Color BLUE = new Color(java.awt.Color.BLUE);
-
-	/**
 	 * Black color = (0,0,0)
 	 */
 	public static final Color BLACK = new Color();
+
+
+	/**
+	 * blue color
+	 */
+	public static final Color BLUE = new Color(java.awt.Color.BLUE);
 
 	/**
 	 * Default constructor - to generate Black Color (privately)

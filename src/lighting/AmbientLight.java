@@ -1,8 +1,7 @@
-package elements;
+package lighting;
 
 import primitives.Color;
 import primitives.Double3;
-import scene.Scene;
 
 /**
  * Ambient light for basic illumination

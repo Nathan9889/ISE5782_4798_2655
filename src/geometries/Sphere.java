@@ -8,7 +8,7 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
-public class Sphere implements Geometry{
+public class Sphere extends Geometry {
 
     /**
      * Point to define the center of sphere
@@ -64,7 +64,7 @@ public class Sphere implements Geometry{
      * @throws IllegalArgumentException if the starting point of the ray equals to the center of the sphere
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -86,16 +86,16 @@ public class Sphere implements Geometry{
         double t2 = alignZero(tm + th);
 
         if(t1 > 0 && t2 > 0){
-            Point p1 = ray.getPoint(t1);
-            Point p2 = ray.getPoint(t2);
+            GeoPoint p1 = new GeoPoint(this,ray.getPoint(t1));
+            GeoPoint p2 =  new GeoPoint(this,ray.getPoint(t2));
             return List.of(p1, p2);
         }
 
         if(t1 > 0){
-            return List.of(ray.getPoint(t1));
+            return List.of( new GeoPoint(this,ray.getPoint(t1)));
         }
         if(t2 > 0){
-            return List.of(ray.getPoint(t2));
+            return List.of( new GeoPoint(this,ray.getPoint(t2)));
         }
         else {
             return null; // 0 points

@@ -30,11 +30,11 @@ public class Triangle extends Polygon{
      * @return list of intersection points that were found
      */
     @Override
-    public List<Point> findIntersections(Ray ray){
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
-        var result = plane.findIntersections(ray);
+        var result = plane.findGeoIntersectionsHelper(ray);
 
         // if there is no intersections with the plane is a fortiori (kal&homer)
         // that there is no intersections with the triangle
@@ -56,7 +56,7 @@ public class Triangle extends Polygon{
 
 
         if(x1 < 0 && x2 < 0 && x3 < 0 || x1 > 0 && x2 > 0 && x3 > 0){
-            return result;
+            return List.of(new GeoPoint(this,result.get(0).point));
         }
 
         return null;

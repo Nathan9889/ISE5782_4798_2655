@@ -1,9 +1,12 @@
 package primitives;
 
+import geometries.Intersectable;
+
 import java.nio.channels.FileLockInterruptionException;
 import java.util.List;
 import java.util.Objects;
 
+import static geometries.Intersectable.*;
 import static primitives.Util.isZero;
 
 /**
@@ -83,15 +86,23 @@ public class Ray {
      * @return point
      */
     public Point findClosestPoint(List<Point> points){
-        if(points == null){
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+
+
+
+    }
+
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPoints) {
+        if(geoPoints == null){
             return null;
         }
 
-        Point res = points.get(0);
-        double distance = p0.distance(res);
+        GeoPoint res = geoPoints.get(0);
+        double distance = p0.distance(res.point);
         double d;
-        for (var pt: points){
-            d = pt.distance(p0);
+        for (var pt: geoPoints){
+            d = pt.point.distance(p0);
             if(d < distance){
                 distance = d;
                 res  = pt;

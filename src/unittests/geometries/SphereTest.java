@@ -1,5 +1,6 @@
 package unittests.geometries;
 
+import geometries.Intersectable;
 import geometries.Sphere;
 import org.junit.jupiter.api.Test;
 import primitives.*;
@@ -24,7 +25,7 @@ class SphereTest {
     }
 
     /**
-     *tests for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
+     *tests for {@link Intersectable#findIntersections(Ray)}.
      */
 
     @Test

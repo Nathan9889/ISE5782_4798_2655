@@ -1,5 +1,6 @@
 package unittests.geometries;
 
+import geometries.Intersectable;
 import geometries.Plane;
 import org.junit.jupiter.api.Test;
 import primitives.*;
@@ -38,7 +39,7 @@ class PlaneTest {
 
 
     /**
-     *tests for {@link geometries.Plane#findIntersections(primitives.Ray)}.
+     *tests for {@link Intersectable#findIntersections(Ray)}.
      */
     // ============ Equivalence Partitions Tests ==============//
     // The Ray's here ar not orthogonal and not parallels to the plane

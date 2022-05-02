@@ -9,13 +9,10 @@ import java.util.List;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
     final Point q0;
     final Vector normal;
-
-
-
 
     /**
      * Constructor of Plane from 3 points
@@ -72,7 +69,7 @@ public class Plane implements Geometry {
      * @return list of point that intersect the object
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 
         Point p0 = ray.getP0();
         Vector v1 = ray.getDir();
@@ -93,7 +90,7 @@ public class Plane implements Geometry {
         if(t <= 0)
             return null;
 
-        return List.of(ray.getPoint(t));
+        return List.of(new GeoPoint(this,ray.getPoint(t)));
 
     }
 }

@@ -1,10 +1,8 @@
 package scene;
 
-import elements.AmbientLight;
+import lighting.AmbientLight;
 import geometries.Geometries;
 import primitives.Color;
-
-import java.security.interfaces.RSAMultiPrimePrivateCrtKey;
 
 /**
  * Scen for holding all of the elements
