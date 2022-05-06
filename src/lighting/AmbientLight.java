@@ -6,9 +6,7 @@ import primitives.Double3;
 /**
  * Ambient light for basic illumination
  */
-public class AmbientLight {
-
-    private final Color intensity;
+public class AmbientLight extends Light{
 
     /**
      * Ctor
@@ -16,22 +14,14 @@ public class AmbientLight {
      * @param Ka Intensity factor
      */
     public AmbientLight(Color Ia , Double3 Ka){
-        intensity = Ia.scale(Ka);
+        super(Ia.scale(Ka));
     }
 
     /**
      * Default Ctor
      */
     public AmbientLight(){
-        intensity = Color.BLACK;
-    }
-
-    /**
-     * getter of intensity
-     * @return intensity after scaling
-     */
-    public Color getIntensity() {
-        return intensity;
+        super(Color.BLACK);
     }
 
 
