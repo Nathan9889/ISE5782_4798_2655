@@ -13,15 +13,15 @@ public class PointLight extends Light implements LightSource{
     /**
      * kC - Its purpose is to ensure that the light is not strengthened but weakened
      */
-    private double _kC = 1d;
+    private double Kc = 1d;
     /**
      * kL - reduce factor of attenuation of light linear dependence
      */
-    private double _kL = 0d;
+    private double Kl = 0d;
     /**
      * kQ - reduce factor of attenuation of light quadratic dependence
      */
-    private double _kQ = 0d;
+    private double Kq = 0d;
 
     /**
      * constructor
@@ -46,11 +46,11 @@ public class PointLight extends Light implements LightSource{
             return getIntensity();
         }
 
-        double kCDistance = _kC;
-        double kLDistance = _kL* dist;
-        double kDDistance = _kQ * (dist*dist);
+        double kCDistance = Kc;
+        double kLDistance = Kl * dist;
+        double kDDistance = Kq * (dist*dist);
 
-        double fact = (_kC + kLDistance + kDDistance);
+        double fact = (Kc + kLDistance + kDDistance);
 
         return getIntensity().reduce(fact);
     }
@@ -85,8 +85,8 @@ public class PointLight extends Light implements LightSource{
      * @param _kC
      * @return
      */
-    public PointLight set_kC(double _kC) {
-        this._kC = _kC;
+    public PointLight setKc(double _kC) {
+        this.Kc = _kC;
         return this;
     }
 
@@ -96,8 +96,8 @@ public class PointLight extends Light implements LightSource{
      * @param _kL
      * @return
      */
-    public PointLight set_kL(double _kL) {
-        this._kL = _kL;
+    public PointLight setKl(double _kL) {
+        this.Kl = _kL;
         return this;
     }
 
@@ -107,8 +107,8 @@ public class PointLight extends Light implements LightSource{
      * @param _kQ
      * @return
      */
-    public PointLight set_kQ(double _kQ) {
-        this._kQ = _kQ;
+    public PointLight setKq(double _kQ) {
+        this.Kq = _kQ;
         return this;
     }
 }

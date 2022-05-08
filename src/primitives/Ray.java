@@ -6,6 +6,7 @@ import java.nio.channels.FileLockInterruptionException;
 import java.util.List;
 import java.util.Objects;
 
+
 import static geometries.Intersectable.*;
 import static primitives.Util.isZero;
 
@@ -81,7 +82,7 @@ public class Ray {
     }
 
     /**
-     * Find the closest point inrterseted by the ray
+     * Find the closest point intersected by the ray
      * @param points inter points
      * @return point
      */

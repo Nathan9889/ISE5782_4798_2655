@@ -120,7 +120,7 @@ public class Camera {
     }
 
 
-    public void renderImage() {
+    public Camera renderImage() {
         int nx = _imageWriter.getNx();;
         int ny = _imageWriter.getNy();;
 
@@ -131,6 +131,7 @@ public class Camera {
                 _imageWriter.writePixel(i,j,pixelcolor);
             }
         }
+        return this;
 
     }
 }

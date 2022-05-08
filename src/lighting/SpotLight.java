@@ -1,6 +1,7 @@
 package lighting;
 
 import primitives.Color;
+import primitives.Material;
 import primitives.Point;
 import primitives.Vector;
 
@@ -24,9 +25,18 @@ public class SpotLight extends PointLight{
         _direction = direction.normalize();
     }
 
+    @Override
+    public Color getIntensity(Point p){
+        Color pointIntensity = super.getIntensity(p);
+        Vector l = getL(p);
+        double attenuation = l.dotProduct(_direction);
+        return pointIntensity.scale(Math.max(0,attenuation));
+    }
 
 
-
+    public SpotLight setNarrowBeam(int i){
+        return this;
+    }
 
 
 

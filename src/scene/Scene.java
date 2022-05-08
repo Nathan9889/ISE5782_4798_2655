@@ -35,9 +35,10 @@ public class Scene {
     public Geometries geometries;
 
 
-
-
-    List<LightSource> lights = new LinkedList<>();
+    /**
+     * List of lightsource
+     */
+    public List<LightSource> lights = new LinkedList<>();
 
 
 
@@ -53,22 +54,44 @@ public class Scene {
         geometries = new Geometries();
     }
 
+    /**
+     * builder type setter for backround
+     * @param background
+     * @return
+     */
     public Scene setBackground(Color background) {
         this.background = background;
         return this;
     }
 
+
+    /**
+     * builder type setter for ambient light
+     * @param ambientLight
+     * @return
+     */
     public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
         return this;
     }
 
+
+    /**
+     * builder setter for geometries
+     * @param geometries
+     * @return
+     */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
         return this;
     }
 
 
+    /**
+     * builder setter for list of lightsource
+     * @param lights
+     * @return
+     */
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;
         return this;

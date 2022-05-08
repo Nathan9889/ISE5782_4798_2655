@@ -56,8 +56,7 @@ public class RenderTests {
 				.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))); //
 
 		scene.geometries.add( //
-				new Sphere(new Point(0, 0, -100), 50)
-						.setEmission(new Color(YELLOW)),
+				new Sphere(new Point(0, 0, -100), 50),
 				// up left
 				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100))
 						.setEmission(new Color(GREEN)),
