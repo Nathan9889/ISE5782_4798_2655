@@ -2,7 +2,12 @@ package scene;
 
 import lighting.AmbientLight;
 import geometries.Geometries;
+import lighting.LightSource;
 import primitives.Color;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Scen for holding all of the elements
@@ -30,6 +35,13 @@ public class Scene {
     public Geometries geometries;
 
 
+
+
+    List<LightSource> lights = new LinkedList<>();
+
+
+
+
     /**
      * Ctor
      * @param _name name of builder
@@ -53,6 +65,12 @@ public class Scene {
 
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
+        return this;
+    }
+
+
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
         return this;
     }
 
