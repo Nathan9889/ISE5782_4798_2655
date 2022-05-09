@@ -2,6 +2,8 @@ package primitives;
 
 public class Material {
 
+
+
     /**
      * the diffuse reduce factor
      */
@@ -27,7 +29,15 @@ public class Material {
     }
 
 
+    public Material setKd(Double3 kd) {
+        Kd = kd;
+        return this;
+    }
 
+    public Material setKs(Double3 ks) {
+        Ks = ks;
+        return this;
+    }
 
 
     /**

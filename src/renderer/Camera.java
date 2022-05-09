@@ -2,6 +2,8 @@ package renderer;
 
 import primitives.*;
 
+import java.util.MissingResourceException;
+
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -14,8 +16,8 @@ public class Camera {
     private double _distance;
     private double _width;
     private double _height;
-    private ImageWriter _imageWriter;
-    private RayTracer _rayTracer;
+    private ImageWriter imageWriter;
+    private RayTracer rayTracer;
 
 
     public Point getP0() {
@@ -91,44 +93,48 @@ public class Camera {
 
 
     public Camera setImageWriter(ImageWriter imageWriter) {
-        _imageWriter = imageWriter;
+        this.imageWriter = imageWriter;
         return this;
     }
 
-    public void writeToImage() {
-        _imageWriter.writeToImage();
+    public Camera writeToImage() {
+        if(imageWriter == null){
+            throw new MissingResourceException("not set", "Camera","Camera");
+        }
+        imageWriter.writeToImage();
+        return this;
     }
 
     public void printGrid(int gap, Color intervalColor) {
-        for (int i = 0; i < _imageWriter.getNx(); i++) {
-            for (int j = 0; j < _imageWriter.getNy(); j++) {
+        for (int i = 0; i < imageWriter.getNx(); i++) {
+            for (int j = 0; j < imageWriter.getNy(); j++) {
                 // 800/16 = 50
                 if (i % gap == 0) {
-                    _imageWriter.writePixel(i, j,intervalColor);
+                    imageWriter.writePixel(i, j,intervalColor);
                 }
                 // 500/10 = 50
                 else if (j % gap == 0) {
-                    _imageWriter.writePixel(i, j, intervalColor);
+                    imageWriter.writePixel(i, j, intervalColor);
                 }
             }
         }
     }
 
     public Camera setRayTracer(RayTracer rayTracer) {
-        _rayTracer = rayTracer;
+        this.rayTracer = rayTracer;
         return this;
     }
 
 
     public Camera renderImage() {
-        int nx = _imageWriter.getNx();;
-        int ny = _imageWriter.getNy();;
+        int nx = imageWriter.getNx();;
+        int ny = imageWriter.getNy();;
 
         for (int i = 0; i < nx; i++) {
             for (int j = 0; j < ny  ; j++) {
                 Ray ray = constructRay(nx,ny,i,j);
-                Color pixelcolor = _rayTracer.traceRay(ray);
-                _imageWriter.writePixel(i,j,pixelcolor);
+                Color pixelcolor = rayTracer.traceRay(ray);
+                imageWriter.writePixel(i,j,pixelcolor);
             }
         }
         return this;

@@ -69,22 +69,17 @@ public class RayTracerBasic extends RayTracer {
             }
         }
         return color;
-
     }
 
     private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v) {
-        Vector r = calcVectorR(l,n);
-        return material.Ks.scale(Math.pow(Math.max(0,v.scale(-1).dotProduct(r)),material.nShininess));
+
+
+        Vector r = l.add(n.scale(-2*nl));
+        double vr = v.scale(-1).dotProduct(r);
+        return material.Ks.scale(Math.pow(Math.max(0, vr),material.nShininess));
     }
 
-    private Vector calcVectorR(Vector v, Vector n) {
-        double a = v.dotProduct(n);
-        Vector b = n.scale(a);
-        Vector c = v.subtract(b);
 
-        return v.subtract(n.scale(2*v.dotProduct(n)).normalize());
-
-    }
 
     /**
      * calculate kd of color
