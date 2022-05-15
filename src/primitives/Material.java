@@ -17,6 +17,16 @@ public class Material {
      */
     public int nShininess = 0;
 
+    /**
+     * kt transparency
+     */
+    public Double3 Kt =Double3.ZERO;
+
+    /**
+     * Reflection of the material
+     */
+    public Double3 Kr = Double3.ZERO;
+
 
     public Material setKd(double kd) {
         Kd = new Double3(kd);
@@ -25,6 +35,16 @@ public class Material {
 
     public Material setKs(double ks) {
         Ks = new Double3(ks);
+        return this;
+    }
+
+    public Material setKt(double kt) {
+        Kt = new Double3(kt);
+        return this;
+    }
+
+    public Material setKr(double kr) {
+        Kr = new Double3(kr);
         return this;
     }
 
@@ -40,6 +60,19 @@ public class Material {
     }
 
 
+
+
+    public Material setKt(Double3 kt) {
+        Kt = kt;
+        return this;
+    }
+
+    public Material setKr(Double3 kr) {
+        Kr = kr;
+        return this;
+    }
+
+
     /**
      * setter for nshininess
      * @param nShininess
@@ -49,8 +82,6 @@ public class Material {
         this.nShininess = nShininess;
         return this;
     }
-
-
 
 
 

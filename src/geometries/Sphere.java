@@ -64,7 +64,7 @@ public class Sphere extends Geometry {
      * @throws IllegalArgumentException if the starting point of the ray equals to the center of the sphere
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -85,16 +85,16 @@ public class Sphere extends Geometry {
         double t1 = alignZero(tm - th);
         double t2 = alignZero(tm + th);
 
-        if(t1 > 0 && t2 > 0){
+        if(t1 > 0 && t2 > 0 && alignZero(t1 -maxDistance)<=0 && alignZero(t2 - maxDistance)<= 0) {
             GeoPoint p1 = new GeoPoint(this,ray.getPoint(t1));
             GeoPoint p2 =  new GeoPoint(this,ray.getPoint(t2));
             return List.of(p1, p2);
         }
 
-        if(t1 > 0){
+        if(t1 > 0 && alignZero(t1 -maxDistance)<=0 ){
             return List.of( new GeoPoint(this,ray.getPoint(t1)));
         }
-        if(t2 > 0){
+        if(t2 > 0 && alignZero(t2 -maxDistance)<=0 ){
             return List.of( new GeoPoint(this,ray.getPoint(t2)));
         }
         else {

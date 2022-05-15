@@ -11,7 +11,7 @@ import static primitives.Util.alignZero;
 /**
  * Triangle class
  */
-public class Triangle extends Polygon{
+public class Triangle extends Polygon implements flatGeometry{
 
     /**
      * Constructor of triangle
@@ -30,11 +30,11 @@ public class Triangle extends Polygon{
      * @return list of intersection points that were found
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
-        var result = plane.findGeoIntersectionsHelper(ray);
+        var result = plane.findGeoIntersectionsHelper(ray,maxDistance);
 
         // if there is no intersections with the plane is a fortiori (kal&homer)
         // that there is no intersections with the triangle

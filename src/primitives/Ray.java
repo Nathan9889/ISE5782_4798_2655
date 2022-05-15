@@ -15,6 +15,8 @@ import static primitives.Util.isZero;
  */
 public class Ray {
 
+    private static final double DELTA = 0.1;
+
     /**
      * Point for stating ray
      */
@@ -33,6 +35,13 @@ public class Ray {
     public Ray(Vector v1, Point _p0) {
         p0 = _p0;
         dir = v1.normalize();
+    }
+
+
+    public Ray(Point head, Vector _dir, Vector normal){
+        Vector delta = normal.scale(normal.dotProduct(_dir) >= 0? DELTA:-DELTA);
+        p0 = head.add(delta);
+        dir = _dir.normalize();
     }
 
     /**

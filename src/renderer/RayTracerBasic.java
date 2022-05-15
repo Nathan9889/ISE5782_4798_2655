@@ -5,10 +5,51 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 import static geometries.Intersectable.*;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracer {
+
+    /**
+     * delta
+     */
+    private static final double DELTA = 0.1;
+
+    /**for transparency
+     *
+     */
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+
+    /**
+     * for transpaency
+     */
+    private static final double MIN_CALC_COLOR_K = 0.001;
+
+
+    /**
+     * if the ray intersect with object than the point is shadow
+     * @param light
+     * @param gp
+     * @param l
+     * @param n
+     * @return
+     */
+    private boolean unshaded(LightSource light,GeoPoint gp, Vector l, Vector n){
+
+       Vector lightDirection = l.scale(-1);
+        Ray lightRay = new Ray(gp.point, lightDirection, n);
+        List<GeoPoint> inters = this.scene.geometries.findGeoIntersections(lightRay,light.getDistance(gp.point));
+        if (inters != null){
+            for(GeoPoint intersection : inters){
+                if(intersection.geometry.getMaterial().Kt ==Double3.ZERO){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * ctor
@@ -63,9 +104,12 @@ public class RayTracerBasic extends RayTracer {
             double nl = alignZero(n.dotProduct(l));
 
             if(nl*nv > 0){
-                Color iL =lightSource.getIntensity(gp.point);
-                color = color.add(iL.scale(calcDiffusive(material, nl)),
-                        iL.scale(calcSpecular(material, n, l ,nl, v)));
+                if(unshaded(lightSource,gp,l,n)) {
+                    Color iL = lightSource.getIntensity(gp.point);
+                    color = color.add(iL.scale(calcDiffusive(material, nl)),
+                            iL.scale(calcSpecular(material, n, l, nl, v)));
+
+                }
             }
         }
         return color;
