@@ -20,7 +20,7 @@ public class Material {
     /**
      * kt transparency
      */
-    public Double3 Kt =Double3.ZERO;
+    public Double3 Kt = Double3.ZERO;
 
     /**
      * Reflection of the material
