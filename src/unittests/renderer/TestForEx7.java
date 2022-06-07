@@ -4,6 +4,7 @@ import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
+import lighting.DirectionalLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
 import primitives.*;
@@ -105,7 +106,7 @@ public class TestForEx7 {
                         new Point(-300,-200,75),
                         new Point(400,-140,75),
                         new Point(400,140,75))//
-                        .setEmission(new Color(75,75,75)) //
+                        .setEmission(new Color(120,50,0)) //
                         .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(10)),//
 
 
@@ -114,7 +115,7 @@ public class TestForEx7 {
                         new Point(-300,-200,-75),
                         new Point(400,-140,-75),
                         new Point(400,140,-75))//
-                        .setEmission(new Color(75,75,75)) //
+                        .setEmission(new Color(120,50,0)) //
                         .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(10)),
 
 
@@ -124,8 +125,37 @@ public class TestForEx7 {
                         new Point(-300,-200,-75),
                         new Point(-300,-200,75),
                         new Point(-300,200,75))//
-                        .setEmission(new Color(75,75,75)) //
+                        .setEmission(new Color(120,50,0)) //
                         .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(10)),
+
+
+
+                new Polygon(
+                        new Point(400,140,-75),
+                        new Point(-300,200,-75),
+                        new Point(-300,200,75),
+                        new Point(400,140,75))//
+                        .setEmission(new Color(YELLOW)) //
+                        .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(10)),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 new Polygon(
@@ -137,16 +167,31 @@ public class TestForEx7 {
                         .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(10)),
 
 
-                new Sphere(new Point(-100, 100, 300), 100d).setEmission(new Color(BLUE)) //
+
+
+
+
+                new Polygon(
+                        new Point(-300,1000,-90),
+                        new Point(-300,-1000,-90),
+                        new Point(400,-800,-90),
+                        new Point(400,800,-90))//
+                        .setEmission(new Color(BLUE)) //
+                        .setMaterial(new Material().setKr(1).setKs(0.1).setShininess(0)),
+
+
+
+                new Sphere(new Point(-100, 100, 575), 100d).setEmission(new Color(BLUE)) //
                         .setMaterial(new Material().setKd(0.3).setKs(0.2).setShininess(30).setKt(0.6)),//
-                new Sphere(new Point(100, -200, 400), 100).setEmission(new Color(RED)) //
+                new Sphere(new Point(-300, -200, 500), 100).setEmission(new Color(RED)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(10).setKt(0.8)),//
-                new Sphere(new Point(200, 100, 800), 50d).setEmission(new Color(GREEN)) //
+                new Sphere(new Point(200, 100, 175), 50d).setEmission(new Color(GREEN)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.3)));
 
         scen.lights.add(new SpotLight(new Color(700, 400, 400),
-                new Point(0, 0, 1200), new Vector(0.5, 2.5, -7.5)) //
+                new Point(300, -300, 0), new Vector(0.5, 2.5, -7.5)) //
                 .setKl(4E-5).setKq(2E-7));
+
 
         ImageWriter imageWriter = new ImageWriter("Xylo", 600, 600);
         camera.setImageWriter(imageWriter) //
