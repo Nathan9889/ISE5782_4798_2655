@@ -1,5 +1,6 @@
 package unittests.renderer;
 
+import geometries.Cylinder;
 import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
@@ -31,7 +32,7 @@ public class ImageTesting {
 
         Scene scene = new Scene("Test scene")
                 .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.05)))
-                .setBackground(new Color(34,50,90));
+                .setBackground(new Color(25,50,100));
 
         scene.geometries.add( //
 
@@ -40,7 +41,7 @@ public class ImageTesting {
                         new Point(-300,-200,75),
                         new Point(400,-140,75),
                         new Point(400,140,75))//
-                        .setEmission(new Color(BLACK)) //
+                        .setEmission(new Color(42, 80, 87)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),//
 
 
@@ -49,7 +50,7 @@ public class ImageTesting {
                         new Point(-300,-200,0),
                         new Point(400,-140,0),
                         new Point(400,140,0))//
-                        .setEmission(new Color(150,50,0)) //
+                        .setEmission(new Color(42, 115, 87)) //
                         .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
 
 
@@ -59,7 +60,7 @@ public class ImageTesting {
                         new Point(-300,-200,0),
                         new Point(-300,-200,75),
                         new Point(-300,200,75))//
-                        .setEmission(new Color(150,50,0)) //
+                        .setEmission(new Color(42, 115, 87)) //
                         .setMaterial(new Material().setKr(0.6).setKs(0.1).setShininess(10)),
 
 
@@ -68,7 +69,7 @@ public class ImageTesting {
                         new Point(400,140,75),
                         new Point(400,140,0),
                         new Point(400,-140,0))//
-                        .setEmission(new Color(150,50,0)) //
+                        .setEmission(new Color(42, 115, 87)) //
                         .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
 
 
@@ -80,7 +81,7 @@ public class ImageTesting {
                         new Point(-300,-200,0),
                         new Point(400,-140,0),
                         new Point(400,-140,75))//
-                        .setEmission(new Color(150,50,0)) //
+                        .setEmission(new Color(42, 115, 87)) //
                         .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
 
 
@@ -90,7 +91,7 @@ public class ImageTesting {
                         new Point(-300,200,0),
                         new Point(400,140,0),
                         new Point(400,140,75))//
-                        .setEmission(new Color(150,50,0)) //
+                        .setEmission(new Color(42, 115, 87)) //
                         .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
 
 
@@ -193,7 +194,7 @@ public class ImageTesting {
                         new Point(-300,-300,-120),
                         new Point(700,-300,-120),
                         new Point(700,600,-120))//
-                        .setEmission(new Color(ORANGE).reduce(2)) //
+                        .setEmission(new Color(197, 80, 87).reduce(2)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
 
@@ -202,9 +203,8 @@ public class ImageTesting {
                         new Point(-300,600,-120),
                         new Point(700,600,-120),
                         new Point(700,600,200))//
-                        .setEmission(new Color(CYAN).reduce(3)) //
+                        .setEmission(new Color(197, 80, 87).reduce(3)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
-
 
 
 
@@ -233,6 +233,7 @@ public class ImageTesting {
 
         ImageWriter imageWriter = new ImageWriter("Testing", 600, 600);
         camera.setImageWriter(imageWriter) //
+                .setPixels(5,5)
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
