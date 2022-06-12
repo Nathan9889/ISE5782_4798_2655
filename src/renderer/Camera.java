@@ -39,6 +39,16 @@ public class Camera {
         return vRight;
     }
 
+
+
+    /**
+     * Constructor that initializes the parameters of the camera object
+     *
+     * @param p0  origin point of the camera
+     * @param vTo direction vector
+     * @param vUp direction vector
+     * @throws IllegalArgumentException if the "to" and "up" vectors are not perpendicular
+     */
     public Camera(Point p0, Vector vTo, Vector vUp) {
         if(!isZero(vUp.dotProduct(vTo))){
             throw new IllegalArgumentException("The vectors are not orthogonal !");
@@ -50,6 +60,15 @@ public class Camera {
         vRight = this.vTo.crossProduct(this.vUp).normalize();
     }
 
+
+
+    /**
+     * Function that set the size of the View Plane
+     *
+     * @param width  width value of the View Plane
+     * @param height height value of the View Plane
+     * @return the camera object itself
+     */
     public Camera setVPSize(double width, double height){
 
         if(isZero(width) || isZero(height)){
@@ -61,6 +80,12 @@ public class Camera {
     }
 
 
+    /**
+     * Function that set the distance between the camera and the View Plane
+     *
+     * @param distance the distance between the camera and the View Plane
+     * @return the camera object itself
+     */
     public Camera setVPDistance(double distance){
         if(isZero(distance)){
             throw new IllegalArgumentException("distance cannot be zero");
@@ -70,6 +95,16 @@ public class Camera {
     }
 
 
+    /**
+     *   /**
+     *      * Construct a list of ray through a pixel on the view plane
+     *      *
+     *      * @param nX number of pixel in the x-axis
+     *      * @param nY number of pixels in the y-axis
+     *      * @param j  the index of the pixel in the x-axis
+     *      * @param i  the index of the pixel in the y-axis
+     *      * @return a ray from the camera going through the center of the pixel
+     *      */
     public Ray constructRay(int nX, int nY, int j, int i){
         Point Pc = p0.add(vTo.scale(distance));
         double Rx = alignZero(width/nX);
@@ -142,12 +177,22 @@ public class Camera {
         return rays;
     }
 
-
+    /**
+     * This function sets the image writer of the camera to the given image writer.
+     *
+     * @param imageWriter The image writer that will be used to write the image to a file.
+     * @return The camera itself.
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+
+    /**
+     * Function writeToImage produces unoptimized png file of the image according to
+     * pixel color matrix in the directory of the project
+     */
     public Camera writeToImage() {
         if(imageWriter == null){
             throw new MissingResourceException("not set", "Camera","Camera");
@@ -156,6 +201,13 @@ public class Camera {
         return this;
     }
 
+
+    /**
+     * This function helps us to prints a grid
+     *
+     * @param gap the interval between grid line
+     * @param intervalColor  the color of the grid line
+     */
     public void printGrid(int gap, Color intervalColor) {
         for (int i = 0; i < imageWriter.getNx(); i++) {
             for (int j = 0; j < imageWriter.getNy(); j++) {
@@ -171,12 +223,23 @@ public class Camera {
         }
     }
 
+
+    /**
+     * setting the ray tracer
+     * @param rayTracer
+     * @return
+     */
     public Camera setRayTracer(RayTracer rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
 
+    /**
+     * This function helps us to render the image.
+     * It first checks if there are not any missing resource then for each pixel it calls the castRay function to have a color
+     * This function can be used with multiple threads if var numofthreads is not equal 0
+     */
     public Camera renderImage() {
         try {
             if (imageWriter == null) {
@@ -201,14 +264,25 @@ public class Camera {
     }
 
 
-
+    /**
+     * set the pixels of image
+     * @param amountRowPixels
+     * @param amountColumnPixels
+     * @return
+     */
     public Camera setPixels(int amountRowPixels, int amountColumnPixels) {
         this.numRowPixels = amountRowPixels;
         this.numColPixels = amountColumnPixels;
         return this;
     }
 
-
+    /**
+     * This function helps us to create a color for a coordinates in the image
+     * @param nX
+     * @param nY
+     * @param i
+     * @param j
+     */
     private void castRay(int nX, int nY, int i, int j) {
         List<Ray> rays = constructRays(nX, nY, i, j);
         Color pixelColor = rayTracer.traceRays(rays);
