@@ -4,6 +4,8 @@ import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
 
+import java.util.List;
+
 public abstract class RayTracer {
 
     /**
@@ -21,9 +23,10 @@ public abstract class RayTracer {
 
     /**
      * TraceRay
-     * @param ray
+     * @param rays
      * @return
      */
-    abstract Color traceRay(Ray ray);
+    public abstract Color traceRays(List<Ray> rays);
+
 
 }

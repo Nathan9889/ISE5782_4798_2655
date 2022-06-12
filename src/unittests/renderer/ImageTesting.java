@@ -28,7 +28,7 @@ public class ImageTesting {
     public void Xylophone(){
         Camera camera = new Camera(new Point(-6000, -6000, 3200),
                 new Vector(1, 1, -1d/2), new Vector(1, 1, 4)) //
-                .setVPSize(200, 200).setVPDistance(1800);
+                .setVPSize(200, 200).setVPDistance(1700);
 
         Scene scene = new Scene("Test scene")
                 .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.05)))
@@ -42,7 +42,7 @@ public class ImageTesting {
                         new Point(400,-140,75),
                         new Point(400,140,75))//
                         .setEmission(new Color(42, 80, 87)) //
-                        .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),//
+                        .setMaterial(new Material().setKr(0.4).setKs(0.1).setShininess(10)),//
 
 
                 new Polygon(
@@ -51,7 +51,7 @@ public class ImageTesting {
                         new Point(400,-140,0),
                         new Point(400,140,0))//
                         .setEmission(new Color(42, 115, 87)) //
-                        .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
+                        .setMaterial(new Material().setKr(0.4).setKs(0.1).setShininess(10)),
 
 
 
@@ -61,7 +61,7 @@ public class ImageTesting {
                         new Point(-300,-200,75),
                         new Point(-300,200,75))//
                         .setEmission(new Color(42, 115, 87)) //
-                        .setMaterial(new Material().setKr(0.6).setKs(0.1).setShininess(10)),
+                        .setMaterial(new Material().setKr(0.4).setKs(0.1).setShininess(10)),
 
 
                 new Polygon(
@@ -70,7 +70,7 @@ public class ImageTesting {
                         new Point(400,140,0),
                         new Point(400,-140,0))//
                         .setEmission(new Color(42, 115, 87)) //
-                        .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
+                        .setMaterial(new Material().setKr(0.4).setKs(0.1).setShininess(10)),
 
 
 
@@ -82,7 +82,7 @@ public class ImageTesting {
                         new Point(400,-140,0),
                         new Point(400,-140,75))//
                         .setEmission(new Color(42, 115, 87)) //
-                        .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
+                        .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
 
 
@@ -92,7 +92,7 @@ public class ImageTesting {
                         new Point(400,140,0),
                         new Point(400,140,75))//
                         .setEmission(new Color(42, 115, 87)) //
-                        .setMaterial(new Material().setKr(0.7).setKs(0.1).setShininess(10)),
+                        .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
 
 
@@ -190,19 +190,19 @@ public class ImageTesting {
 
 
                 new Polygon(
-                        new Point(-300,600,-120),
-                        new Point(-300,-300,-120),
-                        new Point(700,-300,-120),
-                        new Point(700,600,-120))//
+                        new Point(-400,300,-10),
+                        new Point(-400,-330,-10),
+                        new Point(450,-330,-10),
+                        new Point(450,350,-10))//
                         .setEmission(new Color(197, 80, 87).reduce(2)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
 
                 new Polygon(
-                        new Point(-300,600,200),
-                        new Point(-300,600,-120),
-                        new Point(700,600,-120),
-                        new Point(700,600,200))//
+                        new Point(-400,300,200),
+                        new Point(-400,300,-10),
+                        new Point(450,350,-10),
+                        new Point(450,350,200))//
                         .setEmission(new Color(197, 80, 87).reduce(3)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
@@ -210,11 +210,25 @@ public class ImageTesting {
 
 
 
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,280,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,-306,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,-306,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,280,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
 
 
-                new Sphere(new Point(-90, -90, 120), 30d).setEmission(new Color(RED)) //
+
+
+
+
+
+
+                new Sphere(new Point(-100, 123, 100), 26d).setEmission(new Color(RED)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.2)),//
-                new Sphere(new Point(-150, 100, 100), 30d).setEmission(new Color(BLUE)) //
+                new Sphere(new Point(-180, -77, 100), 26d).setEmission(new Color(BLUE)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.3)));
 
 
@@ -225,16 +239,16 @@ public class ImageTesting {
                 new Point(-550, -300, 500), new Vector(9, 2.62, -5)) //
                 .setKl(4E-5).setKq(2E-7));
 */
-        scene.lights.add(new DirectionalLight(new Color(1000,600,300),new Vector(-600,400,-300)));
-        scene.lights
-                .add(new SpotLight( new Color(800, 500, 0), new Point(-50, -50, 25), new Vector(1, 1, -0.5)).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+        scene.lights.add(new DirectionalLight(new Color(800,600,300),new Vector(-600,400,-300)));
+        scene.lights.add(new SpotLight( new Color(800, 500, 0), new Point(-50, -50, 25), new Vector(1, 1, -0.5)).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+        scene.lights.add(new DirectionalLight(new Color(1000,800,400),new Vector(891,-828,-401)));
 
 
 
         ImageWriter imageWriter = new ImageWriter("Testing", 600, 600);
         camera.setImageWriter(imageWriter) //
-                .setPixels(5,5)
                 .setRayTracer(new RayTracerBasic(scene)) //
+                .setPixels(5,5)
                 .renderImage() //
                 .writeToImage();
     }

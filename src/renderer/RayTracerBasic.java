@@ -27,25 +27,6 @@ public class RayTracerBasic extends RayTracer {
     private static final double MIN_CALC_COLOR_K = 0.001;
 
 
-    /**
-     private boolean unshaded(LightSource light,GeoPoint gp, Vector l, Vector n, double nv){
-
-     Vector lightDirection = l.scale(-1);
-     Vector deltaVect = n.scale(nv<0? DELTA : -DELTA);
-     Point point = gp.point.add(deltaVect);
-     Ray lightRay = new Ray(gp.point, lightDirection, n);
-     List<GeoPoint> inters = this.scene.geometries.findGeoIntersections(lightRay,light.getDistance(gp.point));
-     if (inters != null){
-     for(GeoPoint intersection : inters){
-     if(intersection.geometry.getMaterial().Kt ==Double3.ZERO){
-     return false;
-     }
-     }
-     }
-     return true;
-     }*/
-
-
 
 
     private Double3 transparency(GeoPoint gp, Vector l, Vector n, double nv, LightSource lightSource)
@@ -68,41 +49,6 @@ public class RayTracerBasic extends RayTracer {
 
     }
 
-
-
-
-
-
-/*
-
-    private Double3 transparency(GeoPoint geoPoint, LightSource lightSource, Vector l,Vector n){
-        Vector lightDirection = l.scale(-1); // from point to light source
-        Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
-        double lightDistance = lightSource.getDistance(geoPoint.point);
-
-        var intersections = scene.geometries.findGeoIntersections(lightRay);
-
-        if (intersections == null){
-            return new Double3(1.0);
-        }
-
-
-        Double3 Ktr = new Double3(1.0);
-        for (GeoPoint gp :intersections){
-            if(alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0){
-                Ktr *= gp.geometry.getMaterial().Kt;
-                Ktr = Ktr.product(gp.geometry.getMaterial().Kt);
-
-                if (Ktr.lowerThan(MIN_CALC_COLOR_K)){
-                    return Double3.ZERO;
-                }
-            }
-
-        }
-        return Ktr;
-    }*/
-
-
     private Ray constructReflectedRay(Vector n, Point geoPoint, Ray inRay)
     {
         Vector v = inRay.getDir();
@@ -116,29 +62,6 @@ public class RayTracerBasic extends RayTracer {
     {
         return new Ray(geoPoint, inRay.getDir(), n);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -204,15 +127,22 @@ public class RayTracerBasic extends RayTracer {
 
     /**
      * trace a ray to the geometries
-     * @param ray
+     * @param rays
      * @return
      */
     @Override
-    public Color traceRay(Ray ray) {
-        GeoPoint closeIntersections= findClosestIntersection(ray);
-        if (closeIntersections==null)
-            return scene.background;
-        return calcColor(closeIntersections,ray);
+    public Color traceRays(List<Ray>rays){
+        Color sumColor=Color.BLACK;
+        for(Ray ray:rays){
+            GeoPoint closestPoint=findClosestIntersection(ray);
+            if(closestPoint!=null){
+                sumColor=sumColor.add(calcColor(closestPoint,ray));
+            }else{
+                sumColor=sumColor.add(scene.getBackground(
+                ));
+            }
+        }
+        return sumColor.reduce(rays.size());
     }
 
 
@@ -271,6 +201,9 @@ public class RayTracerBasic extends RayTracer {
     private Double3 calcDiffusive(Material material, double nl) {
         return material.Kd.scale(Math.abs(nl));
     }
+
+
+
 
 
 }

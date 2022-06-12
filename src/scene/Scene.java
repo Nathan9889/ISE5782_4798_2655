@@ -97,4 +97,13 @@ public class Scene {
         return this;
     }
 
+    public Color getBackground() {
+        return background;
+    }
+
+    public AmbientLight getAmbientLight() {
+        return ambientLight;
+    }
+
+
 }
