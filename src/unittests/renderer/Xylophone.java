@@ -17,12 +17,13 @@ import scene.Scene;
 
 import static java.awt.Color.*;
 
-public class ImageTesting {
+public class Xylophone {
+
     private Scene scene = new Scene("Test scene");
 
 
-     /**
-     * Produce a picture of 3 spheres on a triangle mirror
+    /**
+     * Image of Xylophonoe using anialiasing multithreading
      */
     @Test
     public void Xylophone(){
@@ -36,6 +37,9 @@ public class ImageTesting {
 
         scene.geometries.add( //
 
+                /**
+                 * Body
+                 */
                 new Polygon(
                         new Point(-300,200,75),
                         new Point(-300,-200,75),
@@ -199,10 +203,10 @@ public class ImageTesting {
 
 
                 new Polygon(
-                        new Point(-400,300,200),
+                        new Point(-400,300,250),
                         new Point(-400,300,-10),
                         new Point(450,350,-10),
-                        new Point(450,350,200))//
+                        new Point(450,350,250))//
                         .setEmission(new Color(197, 80, 87).reduce(3)) //
                         .setMaterial(new Material().setKr(0.1).setKs(0.1).setShininess(10)),
 
@@ -210,48 +214,77 @@ public class ImageTesting {
 
 
 
-                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,280,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,280,-10)), 15d, 120).setEmission(new Color(53, 47, 70))// Foot
                         .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
-                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,-306,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(-350,-306,-10)), 15d, 120).setEmission(new Color(53, 47, 70))//
                         .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
-                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,-306,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,-306,-10)), 15d, 120).setEmission(new Color(53, 47, 70))//
                         .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
-                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,280,-10)), 15d, 120).setEmission(new Color(CYAN))//  rocket
+                new Cylinder(new Ray(new Vector(0, 0, -1), new Point(410,280,-10)), 15d, 120).setEmission(new Color(53, 47, 70))//
                         .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
 
 
 
-
-
-
-
+                new Cylinder(new Ray(new Vector(1, 0, 0), new Point(-100, 123, 100)), 7d, 185).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(1, 0, 0), new Point(-180, -77, 100)), 7d, 180).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
 
                 new Sphere(new Point(-100, 123, 100), 26d).setEmission(new Color(RED)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.2)),//
                 new Sphere(new Point(-180, -77, 100), 26d).setEmission(new Color(BLUE)) //
-                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.3)));
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.3)),
 
 
-        scene.lights.add(new PointLight(new Color(700, 400, 400),
-                new Point(-550, -300, 500)) //
-                .setKl(4E-5).setKq(0.0000006));
-        /*scene.lights.add(new SpotLight(new Color(700, 400, 400),
-                new Point(-550, -300, 500), new Vector(9, 2.62, -5)) //
-                .setKl(4E-5).setKq(2E-7));
-*/
-        scene.lights.add(new DirectionalLight(new Color(800,600,300),new Vector(-600,400,-300)));
-        scene.lights.add(new SpotLight( new Color(800, 500, 0), new Point(-50, -50, 25), new Vector(1, 1, -0.5)).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+
+
+
+
+
+                new Cylinder(new Ray(new Vector(-0.77, -2.53, 0), new Point(350, -200, 10)), 7d, 185).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(-0.51, -2.39, 0), new Point(260,-220,10)), 7d, 185).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(-0.5, -2.33, 0), new Point(150, -240, 10)), 7d, 185).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+                new Cylinder(new Ray(new Vector(0.23, -2.73, 0), new Point(40,-250,10)), 7d, 185).setEmission(new Color(BLACK))//
+                        .setMaterial(new Material().setKd(0.4).setKs(0.25).setShininess(30)),
+
+                new Sphere(new Point(350, -200, 10), 20d).setEmission(new Color(GREEN).reduce(3)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.2)),//
+                new Sphere(new Point(260, -220, 10), 20).setEmission(new Color(YELLOW).reduce(3)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.2)),//
+                new Sphere(new Point(150, -240, 10), 20).setEmission(new Color(WHITE).reduce(3)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(1).setKt(0.01)),//
+                new Sphere(new Point(40, -250, 10), 20).setEmission(new Color(2, 9, 197)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(20).setKt(0.2))//
+
+
+        );
+
         scene.lights.add(new DirectionalLight(new Color(1000,800,400),new Vector(891,-828,-401)));
 
+        scene.lights.add(new DirectionalLight(new Color(800,600,300),new Vector(-600,400,-300)));
+
+        scene.lights.add(new PointLight(new Color(700, 400, 400), new Point(-550, -300, 500)).setKl(4E-5).setKq(0.0000006));
+        scene.lights.add(new SpotLight(new Color(700, 400, 400),
+                new Point(-0, -0, -5000), new Vector(0, 0, 1)) //
+                .setKl(4E-5).setKq(2E-7));
+        scene.lights.add(new SpotLight( new Color(800, 500, 0),
+                new Point(-50, -50, 25), new Vector(1, 1, -0.5))
+                .setNarrowBeam(10).setKl(0.001).setKq(0.00004));
+        scene.lights.add(new SpotLight( new Color(800, 500, 400),
+                new Point( 0, 0, 500), new Vector(0, 0, -1))
+                .setNarrowBeam(30).setKl(0.001).setKq(0.00004));
 
 
-        ImageWriter imageWriter = new ImageWriter("Testing", 600, 600);
+
+        ImageWriter imageWriter = new ImageWriter("MyImage", 600, 600);
         camera.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .setPixels(5,5)
                 .renderImage() //
                 .writeToImage();
     }
-
 
 }
