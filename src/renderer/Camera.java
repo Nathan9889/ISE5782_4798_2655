@@ -5,6 +5,7 @@ import primitives.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
+import java.util.stream.*;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -252,11 +253,20 @@ public class Camera {
             //rendering the image
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
-            for (int i = 0; i < nY; i++) {
-                for (int j = 0; j < nX; j++) {
-                    castRay(nX, nY, i, j);
-                }
-            }
+            IntStream.range(0,nY).parallel().forEach(i->{
+                IntStream.range(0,nX).parallel().forEach(j->{
+                    castRay(nX,nY,j,i);
+                    Pixel.pixelDone();
+                    Pixel.printPixel();
+                });
+            });
+
+
+
+
+
+
+
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
